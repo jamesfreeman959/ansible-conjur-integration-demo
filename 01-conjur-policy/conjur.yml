@@ -1,0 +1,5 @@
+- !policy
+  id: server
+
+- !policy
+  id: ansible

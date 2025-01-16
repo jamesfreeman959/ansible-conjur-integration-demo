@@ -1,0 +1,10 @@
+- !layer
+
+- !host ansible-01
+
+- !grant
+  role: !layer
+  member: !host ansible-01
+
+- !host-factory
+  layers: [ !layer ]

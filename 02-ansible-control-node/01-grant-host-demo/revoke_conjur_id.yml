@@ -1,0 +1,4 @@
+- hosts: servers
+  roles:
+    - role: cyberark.conjur.conjur_host_identity
+      state: absent

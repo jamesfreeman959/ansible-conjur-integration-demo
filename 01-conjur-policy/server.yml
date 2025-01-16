@@ -1,0 +1,19 @@
+- &variables
+  - !variable conjur-ansible-node01.example.com/host
+  - !variable conjur-ansible-node01.example.com/user
+  - !variable conjur-ansible-node01.example.com/pass
+  - !variable host02/host
+  - !variable host02/user
+  - !variable host02/pass
+
+- !group secrets-users
+
+- !permit
+  resource: *variables
+  privileges: [ read, execute ]
+  roles: !group secrets-users
+
+# Entitlements
+- !grant
+  role: !group secrets-users
+  member: !layer /ansible
