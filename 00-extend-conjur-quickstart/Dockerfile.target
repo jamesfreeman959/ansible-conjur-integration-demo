@@ -1,0 +1,18 @@
+# Dockerfile for Ansible target node
+FROM ubuntu:latest
+
+# Install SSH server and Python (required for Ansible)
+RUN apt update && apt install -y openssh-server python3
+
+# Set up SSH keys
+RUN mkdir /var/run/sshd
+RUN echo 'root:password' | chpasswd  # Set root password for SSH
+
+# Allow root login with password
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Expose SSH port
+EXPOSE 22
+
+# Start SSH service
+CMD ["/usr/sbin/sshd", "-D"]

@@ -1,0 +1,11 @@
+# Dockerfile for Ansible control node
+FROM ubuntu:latest
+
+# Install dependencies
+RUN apt update && apt -y install software-properties-common && add-apt-repository --yes --update ppa:ansible/ansible && apt install -y ansible openssh-client git curl wget
+
+# Set working directory
+WORKDIR /ansible
+
+# Default command to keep the container running
+CMD [ "sleep", "infinity" ]
